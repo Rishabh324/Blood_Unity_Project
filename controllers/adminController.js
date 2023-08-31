@@ -112,7 +112,6 @@ exports.deleteOrganisation = async (req, res) => {
 exports.getAllRecords = async (req, res) => {
     try {
         const inventory = await inventoryModel.find().sort({ createdAt: -1 });
-        console.log(inventory);
         res.status(200).json({
             status: "success",
             message: "All records fetched successfully.",

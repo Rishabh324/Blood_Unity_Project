@@ -17,7 +17,7 @@
   "scripts": {
     "server": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "npm start --prefix ./client",
+    "client": "npm start --prefix ../Frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Rishabh Sinha",

@@ -13,19 +13,6 @@ exports.addInventory = async (req, res) => {
             })
         }
         else {
-            // if (inventoryType === 'IN' && user.role !== 'Donor') {
-            //     return res.status(404).json({
-            //         status: "failed",
-            //         message: "Not a donor account"
-            //     })
-            // }
-            // if (inventoryType === 'OUT' && user.role !== 'Hospital') {
-            //     return res.status(404).json({
-            //         status: "failed",
-            //         message: "Not a hospital"
-            //     })
-            // }
-
             if (req.body.inventoryType === "OUT") {
                 const reqBloodGroup = req.body.bloodGroup;
                 const reqQuantity = req.body.quantity;
@@ -100,7 +87,6 @@ exports.addInventory = async (req, res) => {
 
 exports.getInventory = async (req, res) => {
     try {
-        console.log(req.body);
         const inventory = await inventoryModel.find({ organisation: req.body.id })
             .populate("donor")
             .populate("hospital");
@@ -183,7 +169,6 @@ exports.getDonorRecords = async (req, res) => {
 exports.getHospitalRecords = async (req, res) => {
     try {
         const organisation = req.body.id;
-        console.log(organisation);
         const hospitalId = await inventoryModel.distinct("donor", { organisation });
         const hospitals = await userModel.find({ _id: { $in: hospitalId } });
         res.status(200).json({
